@@ -3,15 +3,35 @@ createCanvas(700,1000);
 frameRate(60);
 
 var speed = 10;
+var spawnRate = 60;
+var maxSpeed = 110;
+var minSpeed = 10;
+var clock = 0;
+var gameOver = false;
 let player = new Sprite(350,800,50,50,DYNAMIC);
-let testObstical = new Sprite(350,100,50,50,KINEMATIC);
+player.rotationLock = true;
+let testObstical = new Group();
 
 function update() {
-	background('green');
+    if (gameOver == false){
+	    background('green');
+	    Player_Control();
+        Scroll();
+        clock++;
+        CreateObstical();
+        CollisonDetection();
+    } else {
+        background('red');
+        textSize(32);
+        fill(255);
+        text('Game Over', 250, 500);
+    }
+}
 
-	Player_Control();
-
-    Scroll();
+function CollisonDetection(){
+    if(player.collide(testObstical)){
+        gameOver = true;
+    }
 }
 
 function Player_Control(){
@@ -27,8 +47,23 @@ function Player_Control(){
     else if(keyboard.pressing("D")){
         player.position.x+=5;
     }
+
+    if (speed > maxSpeed){
+        speed = maxSpeed;
+    }
+    if (speed < minSpeed){
+        speed = minSpeed;
+    }
 }
 
 function Scroll(){
-    testObstical.position.y += speed;
+    for(let i = 0; i < testObstical.length; i++){
+        testObstical[i].position.y+=speed;
+    }
+}
+
+function CreateObstical(){
+    if(clock%spawnRate == 0){
+        let obstical = new testObstical.Sprite(random(50, 650), 100, 50, 50, KINEMATIC);
+    }
 }
