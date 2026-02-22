@@ -147,9 +147,9 @@ function Scroll(){
 }
 
 function CreateObstical(){
-    if(clock%spawnRate == 0){
-        var type = round(random(0,3));
-        if (type<3) {let obstical = new obsticalFamily.Sprite(random(50, 650), 100, 50, 50, KINEMATIC);}
+    if(clock%round(30*spawnRate/speed) == 0){
+        var type = random(0,3);
+        if (type<2) {let obstical = new obsticalFamily.Sprite(random(50, 650), 100, 50, 50, KINEMATIC);}
         else {let beer = new beerFamily.Sprite(random(50, 650), 100, 30, 50, KINEMATIC);}
     }
 }
