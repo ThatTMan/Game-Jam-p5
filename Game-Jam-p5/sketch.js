@@ -20,12 +20,20 @@ function update() {
         clock++;
         CreateObstical();
         CollisonDetection();
+        score();
     } else {
         background('red');
         textSize(32);
         fill(255);
         text('Game Over', 250, 500);
+        text('Final Score: ' + round(clock/60), 250, 550);
     }
+}
+
+function score(){
+    textSize(32);
+    fill(255);
+    text('Score: ' + round(clock/60), 10, 30);
 }
 
 function CollisonDetection(){
