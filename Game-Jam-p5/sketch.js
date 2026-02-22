@@ -38,7 +38,7 @@ function update() {
         textAlign(CENTER);
         text('Welcome to Steel Truck Run!', 350, 300);
         text('You are a truck driver', 350, 350);
-        text('and a recoving alcohalic,', 350, 400);
+        text('and a recoving alcoholic,', 350, 400);
         text('dodge obsticals and beer', 350, 450);
         text(" to stay safe and sober", 350, 500);
         text('Press Space to Start', 350, 600);
@@ -46,7 +46,7 @@ function update() {
             gameStatus = 2;
         }
     } else if (gameStatus == 2){
-    	background('green');
+    	background('black');
     	Player_Control();
         Scroll();
         clock++;
