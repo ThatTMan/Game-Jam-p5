@@ -1,6 +1,6 @@
 
 createCanvas(700,1000);
-frameRate(60);
+frameRate(120);
 
 var speed = 10;
 var spawnRate = 60;
@@ -8,6 +8,7 @@ var maxSpeed = 110;
 var minSpeed = 10;
 var clock = 0;
 var gameOver = false;
+var score = 0;
 let player = new Sprite(350,800,50,50,DYNAMIC);
 player.rotationLock = true;
 let testObstical = new Group();
@@ -20,20 +21,22 @@ function update() {
         clock++;
         CreateObstical();
         CollisonDetection();
-        score();
+        display();
+        score += speed/600;
     } else {
         background('red');
         textSize(32);
         fill(255);
         text('Game Over', 250, 500);
-        text('Final Score: ' + round(clock/60), 250, 550);
+        text('Final Score: ' + round(score), 250, 550);
     }
 }
 
-function score(){
+function display(){
     textSize(32);
     fill(255);
-    text('Score: ' + round(clock/60), 10, 30);
+    text('Score: ' + round(score), 10, 30);
+    text('Speed: ' + speed, 10, 60);
 }
 
 function CollisonDetection(){
@@ -66,7 +69,7 @@ function Player_Control(){
 
 function Scroll(){
     for(let i = 0; i < testObstical.length; i++){
-        testObstical[i].position.y+=speed;
+        testObstical[i].position.y+=speed/2;
     }
 }
 
