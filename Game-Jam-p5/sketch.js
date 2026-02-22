@@ -7,28 +7,43 @@ var spawnRate = 60;
 var maxSpeed = 110;
 var minSpeed = 10;
 var clock = 0;
-var gameOver = false;
+var gameStatus = 1;
 var score = 0;
-var BAC = 200;
+var BAC = 0;
 let player = new Sprite(350,800,50,50,DYNAMIC);
 player.rotationLock = true;
 let obsticalFamily = new Group();
 let beerFamily = new Group();
 
 function update() {
-    if (gameOver == false){
-	    background('green');
-	    Player_Control();
+    if (gameStatus == 1){
+        background('blue');
+        textSize(32);
+        fill(255);
+        textAlign(CENTER);
+        text('Welcome to Steel Truck Run!', 350, 300);
+        text('You are a truck driver', 350, 350);
+        text('and a recoving alcohalic,', 350, 400);
+        text('dodge obsticals and beer', 350, 450);
+        text(" to stay safe and sober", 350, 500);
+        text('Press Space to Start', 350, 600);
+        if(keyboard.pressing(" ")){
+            gameStatus = 2;
+        }
+    } else if (gameStatus == 2){
+    	background('green');
+    	Player_Control();
         Scroll();
         clock++;
         CreateObstical();
         CollisonDetection();
         display();
         score += speed/600;
-    } else {
+    } else if (gameStatus == 3) {
         background('red');
         textSize(32);
         fill(255);
+        textAlign(LEFT);
         text('Game Over', 250, 500);
         text('Final Score: ' + round(score), 250, 550);
     }
@@ -37,6 +52,7 @@ function update() {
 function display(){
     textSize(32);
     fill(255);
+    textAlign(LEFT);
     text('Score: ' + round(score), 10, 30);
     text('Speed: ' + speed, 10, 60);
     text("BAC: " + BAC/100 + "%", 10, 90);
@@ -44,7 +60,7 @@ function display(){
 
 function CollisonDetection(){
     if(player.collide(obsticalFamily)){
-        gameOver = true;
+        gameStatus = 3;
     }
     if(player.collide(beerFamily)){
         BAC += 1;
