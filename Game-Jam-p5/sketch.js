@@ -12,7 +12,6 @@ let player = new Sprite(350,800,50,50,DYNAMIC);
 player.rotationLock = true;
 let testObstical = new Group();
 
-
 function update() {
     if (gameOver == false){
 	    background('green');
@@ -20,12 +19,12 @@ function update() {
         Scroll();
         clock++;
         CreateObstical();
-        CollisonDetection(); // Added collision detection call
+        CollisonDetection();
     } else {
-        background('red'); // Change background to indicate game over
+        background('red');
         textSize(32);
         fill(255);
-        text('Game Over', 250, 500); // Display game over message
+        text('Game Over', 250, 500);
     }
 }
 
