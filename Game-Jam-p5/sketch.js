@@ -2,7 +2,8 @@ let speed, spawnRate, maxSpeed, minSpeed, clock, gameStatus, score, BAC, player,
 
 function preload() {
     beerImage = loadImage("Sprites/beer.png");
-    beerImage.scale = 5;
+    playerImage = loadImage("Sprites/truck.png");
+    enemyImage = loadImage("Sprites/enemy.png");
 }
 
 
@@ -19,8 +20,13 @@ function setup() {
     BAC = 0;
     player = new Sprite(350,800,50,50,DYNAMIC);
     player.rotationLock = true;
+    playerImage.resize(200, 200);
+    player.img = playerImage;
     obsticalFamily = new Group();
+    enemyImage.resize(200, 200);
+    obsticalFamily.img = enemyImage;
     beerFamily = new Group();
+    beerImage.resize(200, 200);
     beerFamily.img=beerImage;
 }
 
@@ -63,7 +69,7 @@ function display(){
     fill(255);
     textAlign(LEFT);
     text('Score: ' + round(score), 10, 30);
-    text('Speed: ' + speed, 10, 60);
+    text('Speed: ' + (50 + speed), 10, 60);
     text("BAC: " + BAC/100 + "%", 10, 90);
 }
 
