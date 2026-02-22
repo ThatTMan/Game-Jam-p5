@@ -1,19 +1,28 @@
+let speed, spawnRate, maxSpeed, minSpeed, clock, gameStatus, score, BAC, player, obsticalFamily, beerFamily, beerImage;
 
-createCanvas(700,1000);
-frameRate(120);
+function preload() {
+    beerImage = loadImage("Sprites/beer.png");
+    beerImage.scale = 5;
+}
 
-var speed = 10;
-var spawnRate = 60;
-var maxSpeed = 110;
-var minSpeed = 10;
-var clock = 0;
-var gameStatus = 1;
-var score = 0;
-var BAC = 0;
-let player = new Sprite(350,800,50,50,DYNAMIC);
-player.rotationLock = true;
-let obsticalFamily = new Group();
-let beerFamily = new Group();
+
+function setup() {
+    createCanvas(700,1000);
+    frameRate(120);
+    speed = 10;
+    spawnRate = 60;
+    maxSpeed = 110;
+    minSpeed = 10;
+    clock = 0;
+    gameStatus = 1;
+    score = 0;
+    BAC = 0;
+    player = new Sprite(350,800,50,50,DYNAMIC);
+    player.rotationLock = true;
+    obsticalFamily = new Group();
+    beerFamily = new Group();
+    beerFamily.img=beerImage;
+}
 
 function update() {
     if (gameStatus == 1){
