@@ -2,24 +2,37 @@
 createCanvas(700,1000);
 frameRate(60);
 
-var speed = 600;
+var speed = 10;
 var spawnRate = 60;
-var maxSpeed = 600;
+var maxSpeed = 110;
 var minSpeed = 10;
 var clock = 0;
+var gameOver = false;
 let player = new Sprite(350,800,50,50,DYNAMIC);
 player.rotationLock = true;
 let testObstical = new Group();
 
+
 function update() {
-	background('green');
+    if (gameOver == false){
+	    background('green');
+	    Player_Control();
+        Scroll();
+        clock++;
+        CreateObstical();
+        CollisonDetection(); // Added collision detection call
+    } else {
+        background('red'); // Change background to indicate game over
+        textSize(32);
+        fill(255);
+        text('Game Over', 250, 500); // Display game over message
+    }
+}
 
-	Player_Control();
-
-    Scroll();
-
-    clock++;
-    CreateObstical();
+function CollisonDetection(){
+    if(player.collide(testObstical)){
+        gameOver = true;
+    }
 }
 
 function Player_Control(){
@@ -36,10 +49,10 @@ function Player_Control(){
         player.position.x+=5;
     }
 
-    if (speed < maxSpeed){
+    if (speed > maxSpeed){
         speed = maxSpeed;
     }
-    if (speed > minSpeed){
+    if (speed < minSpeed){
         speed = minSpeed;
     }
 }
