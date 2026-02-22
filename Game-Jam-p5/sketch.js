@@ -38,8 +38,8 @@ function update() {
         textAlign(CENTER);
         text('Welcome to Steel Truck Run!', 350, 300);
         text('You are a truck driver', 350, 350);
-        text('and a recoving alcoholic,', 350, 400);
-        text('dodge obsticals and beer', 350, 450);
+        text('and a recovering alcoholic,', 350, 400);
+        text('dodge obsticles and beer', 350, 450);
         text(" to stay safe and sober", 350, 500);
         text('Press Space to Start', 350, 600);
         if(keyboard.pressing(" ")){
@@ -91,19 +91,19 @@ function CollisonDetection(){
 async function Player_Control(){
     if(BAC < 200){
         if(keyboard.pressing("W")){
-            await delay(BAC*10);
+            await delay(BAC*50);
             speed += 1;
         }
         if(keyboard.pressing("S")){
-            await delay(BAC*10);
+            await delay(BAC*50);
             speed -= 1;
         }
         if(keyboard.pressing("A")){
-            await delay(BAC*10);
+            await delay(BAC*50);
             player.position.x-=5;
         } 
         else if(keyboard.pressing("D")){
-            await delay(BAC*10);
+            await delay(BAC*50);
             player.position.x+=5;
         }
     } else if(clock%spawnRate == 0){
